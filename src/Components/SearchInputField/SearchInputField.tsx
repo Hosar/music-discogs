@@ -13,7 +13,7 @@ export function SearchInputField({ name, ...props }: Props) {
                 <>
                     <label htmlFor='artistInput'>
                         Search
-                        <input id='artistInput' type='text'
+                        <input id='artistInput' type='text' placeholder='Search artist'
                                className={fieldStyle} {...field} {...props} />
                     </label>
                 </>

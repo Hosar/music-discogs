@@ -1,33 +1,41 @@
-import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { SearchResults, ArtistRecord } from './SearchResults';
-import { fakeMusicResults } from './fakeMusicResults';
+// import { SearchResults, ArtistRecord } from './SearchResults';
+// import { fakeMusicResults } from './fakeMusicResults';
+// import { WithSuspenseContract } from '../Common/WithSuspenseContract'
 
-export default {
-  title: 'Components/SearchResults',
-  component: SearchResults,
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
-} as ComponentMeta<typeof SearchResults>;
+// function fetchArtists() {
+//     console.log("fetch artist...");
+//     return new Promise((resolve) => {
+//       setTimeout(() => {
+//         console.log("fetched artist");
+//         resolve(fakeMusicResults.results);
+//       }, 10000);
+//     });
+//   }
 
-const firstResult: ArtistRecord = fakeMusicResults.results[0];
+// const artistsPromise = fetchArtists();
+// export default {
+//   title: 'Components/SearchResults',
+//   component: SearchResults,
+// } as ComponentMeta<typeof SearchResults>;
 
-const Template: ComponentStory<typeof SearchResults> = (args) => <SearchResults {...args} />;
+// const firstResult: ArtistRecord = fakeMusicResults.results[0];
 
-export const NoRecordsFound = Template.bind({});
-NoRecordsFound.args = {
-    artistRecordsFound: []
-};
+// const Template: ComponentStory<typeof SearchResults> = (args) => <SearchResults {...args} />;
 
-export const OneRecordFound = Template.bind({});
-OneRecordFound.args = {
-    artistRecordsFound: [firstResult]
-};
+// export const NoRecordsFound = Template.bind({});
+// NoRecordsFound.args = {
+//     artistRecordsFound: WithSuspenseContract(artistsPromise)
+// };
 
-export const SeveralRecords = Template.bind({});
-SeveralRecords.args = {
-    artistRecordsFound: fakeMusicResults.results
-};
+// export const OneRecordFound = Template.bind({});
+// OneRecordFound.args = {
+//     artistRecordsFound: [firstResult]
+// };
+
+// export const SeveralRecords = Template.bind({});
+// SeveralRecords.args = {
+//     artistRecordsFound: fakeMusicResults.results
+// };
 
 

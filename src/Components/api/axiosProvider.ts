@@ -1,13 +1,14 @@
 import { Axios } from 'axios';
+import { env } from '../../Common/constants';
 
 export const axiosProvider = new Axios({
-    baseURL: 'https://api.discogs.com/'
+    baseURL: env.DISCOGS_BASE_URL,
 });
 
 axiosProvider.interceptors.request.use((config) => {
     config.params = {
         ...config.params,
-        token: 'FFScUljnRjxkVXRMbNyXmIFjNDzttPFDLrejBLta'
+        token: env.DISCOGS_TOKEN,
     }
     return config;
 });
