@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 export const SearchArtistSchema = Yup.object().shape({
     artistField: Yup.string()
-    .min(2, 'Too Short!')
-    .max(50, 'Too Long!')
+    .matches(/^[0-9A-Za-z\s\-]+$/)
+    .max(50)
     .required('Required')});
   

@@ -5,7 +5,7 @@ interface Props {
 }
 
 export function SearchInputField({ name, ...props }: Props) {
-            const [field, meta, helpers] = useField(name);
+            const [field, meta] = useField(name);
             const fieldStyle = (meta.touched && meta.error) ? 
                     styles.searchInputError : styles.searchInputDefault;
 
@@ -40,6 +40,6 @@ const inputStandardStyle = `form-control
 
 const styles = {
     searchInputDefault: inputStandardStyle + ' focus:border-blue-600',
-    searchInputError: inputStandardStyle + ' focus:border-red-600',
+    searchInputError: inputStandardStyle + ' border-red-600',
                         
 }
