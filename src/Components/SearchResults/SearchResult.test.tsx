@@ -1,5 +1,5 @@
-import { SearchResults, ArtistRecord } from './SearchResults';
-import { render, screen, waitFor } from '@testing-library/react';
+import { SearchResults } from './SearchResults';
+import { render, screen } from '@testing-library/react';
 import { fakeMusicResults } from './fakeMusicResults';
 import { WithSuspenseContract } from '../../Components/Common/WithSuspenseContract'
 import { Suspense } from 'react';
@@ -25,6 +25,16 @@ function getArtist50Record() {
 const defaultLoading = <h1>Loading....</h1>;
 
 describe('SearchResult', () => {
+    
+    test('given a request should show Loading while resolving', async () => {
+        const artistRecordsFound = WithSuspenseContract(getArtistNoRecords());
+        render(<Suspense fallback={defaultLoading}>
+                <SearchResults artistRecordsFound={artistRecordsFound} />
+               </Suspense>);
+
+        expect(screen.getByText(/Loading..../i)).toBeInTheDocument()
+    });
+
     test('given no records found, should show expected message', async () => {
         const artistRecordsFound = WithSuspenseContract(getArtistNoRecords());
         render(<Suspense fallback={defaultLoading}>
