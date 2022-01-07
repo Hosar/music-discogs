@@ -9,44 +9,56 @@ import { RequestError } from '../../Components/RequestError';
 const searchRecordsByArtist = getRecordsByArtist(fetchProvider);
 
 export function LandingPage() {
-    const [artistRecords, setArtistRecords] = useState<ArtistRecord[]>();
+    const [artistRecords, setArtistRecords] = useState<ArtistRecord[]>([]);
     const [artistName, setArtistName] = useState('');
     const [paginationInfo, setPaginationInfo] = useState<Pagination>({page: 1});
     const [requestError, setRequestError] = useState('');
+    const [isLoading, setIsLoading ] = useState(false);
     
     const searchByArtist = async ({artistField}: {artistField: string}) => {
-        console.log('Searching ....', artistField);
         let recordsFound;
+        setIsLoading(true);
+        setArtistRecords([]);
         try {
             recordsFound = await searchRecordsByArtist(artistField);
             setArtistName(artistField);
             setArtistRecords(recordsFound.results);
             setPaginationInfo(recordsFound.pagination);
+            setIsLoading(false);
         } catch (error) {
             setRequestError('Error searching for artist');
-            setArtistRecords(undefined);
+            setArtistRecords([]);
+            setIsLoading(false);
         }
     }
 
     const handleNextPage = async (pageNumber: number) => {
-        console.log('The page number 1', pageNumber);
-        console.log('The page number 2', paginationInfo.page, paginationInfo.pages);
-        console.log('-----> The artist', artistName);
         if(paginationInfo.page === paginationInfo.pages){
             console.log('No more records');
             return;
         }
-        const recordsFound = await searchRecordsByArtist(artistName, paginationInfo.page + 1);
-        setPaginationInfo(recordsFound.pagination);
-        setArtistRecords((previousRecords: any) =>  {
-           return [...previousRecords, ...recordsFound.results] 
-        });
+        setIsLoading(true);
+        let recordsFound: {results: ArtistRecord[], pagination: Pagination};
+        try {
+            recordsFound = await searchRecordsByArtist(artistName, paginationInfo.page + 1);
+            setPaginationInfo(recordsFound.pagination);
+            setArtistRecords((previousRecords: any) =>  {
+               return [...previousRecords, ...recordsFound.results] 
+            });
+            setIsLoading(false);
+            
+        } catch (error) {
+            setRequestError('Error searching for artist');
+            setArtistRecords([]);
+            setIsLoading(false);
+        }
     }
 
     return (
         <div style={styles.container}>
             <SearchInputForm onSubmit={searchByArtist} />
             <SearchResults
+                isLoading={isLoading}
                 artistRecordsFound={artistRecords}
                 paginationInfo={paginationInfo}
                 handleNextPage={handleNextPage} />

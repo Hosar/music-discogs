@@ -1,5 +1,6 @@
-import { useCallback, useRef, forwardRef } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { useCallback, useRef } from 'react';
+import { LoadingModal } from '../LoadingModal';
+import loadingImg from './loading.gif';
 export interface ArtistRecord {
     title: string;
     thumb: string;
@@ -15,19 +16,20 @@ export interface Pagination {
     urls?: object;
 }
 interface Props {
-    artistRecordsFound?: ArtistRecord[];
+    isLoading: boolean;
+    artistRecordsFound: ArtistRecord[];
     paginationInfo: Pagination;
     handleNextPage: (pageNumber: number) => void;
 }
 
 interface ArtistDetailsProps {
     id: number;
-    // key: string,
     artistInfo: ArtistRecord;
     style: React.CSSProperties;
 }
 
 export const SearchResults = ({
+    isLoading,
     artistRecordsFound, 
     paginationInfo, 
     handleNextPage }: Props) => {
@@ -46,19 +48,22 @@ export const SearchResults = ({
         scrollObserver.current.observe(record);
     }, [paginationInfo.page, handleNextPage]);
     
-    if (!artistRecordsFound) return null;
-    if (artistRecordsFound.length === 0) {
+    // if (isLoading) return <LoadingModal isLoading={isLoading} />;
+    // if (!artistRecordsFound) return null;
+    if (artistRecordsFound.length === 0 && !isLoading) {
         return <div><label>No records found</label></div>
     }
     return (
         <div style={styles.container}>
+            <LoadingModal isLoading={isLoading}/>
             {artistRecordsFound.map((artistInfo: any, index: number) => {
                 const id = artistInfo.id?.toString();
                 if (artistRecordsFound.length === index + 1) {
-                    return (<div key={id} ref={scrollObserver} data-testid="artist-records-found">
-                        <div>{artistInfo.title}</div>
-                        <img src={artistInfo.thumb} alt={artistInfo.title} />
-                    </div>);
+                    return (
+                        <div key={id} ref={lastRecord} data-testid="artist-records-found">
+                            <div>{artistInfo.title}</div>
+                            <img src={artistInfo.thumb} alt={artistInfo.title} />
+                        </div>);
                 }
 
                 return (<div key={id} data-testid="artist-records-found">

@@ -30,7 +30,8 @@ beforeEach(() => {
 
 test('given no records found, should show expected message', async () => {
     const artistRecordsFound = getArtistNoRecords();
-    render(<SearchResults 
+    render(<SearchResults
+                isLoading={false} 
                 paginationInfo={paginationInfo} 
                 handleNextPage={handleNextPage}
                 artistRecordsFound={artistRecordsFound} />);
@@ -43,7 +44,8 @@ test('given 1 record found, should show the info', async () => {
     const artistRecordsFound = getArtistOneRecord();
     
 
-    render(<SearchResults 
+    render(<SearchResults
+            isLoading={false}
             paginationInfo={paginationInfo} 
             handleNextPage={handleNextPage}
             artistRecordsFound={artistRecordsFound} />);
@@ -56,6 +58,7 @@ test('given 1 record found, should show the info', async () => {
 test('given several records found, should show the elements', async () => {
     const artistRecordsFound = getArtist50Record();
     render(<SearchResults 
+            isLoading={false}
             paginationInfo={paginationInfo} 
             handleNextPage={handleNextPage} artistRecordsFound={artistRecordsFound} />);
 
