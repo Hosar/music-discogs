@@ -1,38 +1,12 @@
 import { useCallback, useRef } from 'react';
 import { LoadingModal } from '../LoadingModal';
-import loadingImg from './loading.gif';
-export interface ArtistRecord {
-    title: string;
-    thumb: string;
-    cover_image: string;
-    id: number;
-}
-
-export interface Pagination {
-    page: number;
-    pages?: number;
-    per_page?: number;
-    items?: number;
-    urls?: object;
-}
-interface Props {
-    isLoading: boolean;
-    artistRecordsFound: ArtistRecord[];
-    paginationInfo: Pagination;
-    handleNextPage: (pageNumber: number) => void;
-}
-
-interface ArtistDetailsProps {
-    id: number;
-    artistInfo: ArtistRecord;
-    style: React.CSSProperties;
-}
+import { SearchResultsProps } from '../../Common/interfaces'
 
 export const SearchResults = ({
     isLoading,
     artistRecordsFound, 
     paginationInfo, 
-    handleNextPage }: Props) => {
+    handleNextPage }: SearchResultsProps) => {
     const scrollObserver = useRef<IntersectionObserver>();
     
     const lastRecord = useCallback(record => {
@@ -48,8 +22,6 @@ export const SearchResults = ({
         scrollObserver.current.observe(record);
     }, [paginationInfo.page, handleNextPage]);
     
-    // if (isLoading) return <LoadingModal isLoading={isLoading} />;
-    // if (!artistRecordsFound) return null;
     if (artistRecordsFound.length === 0 && !isLoading) {
         return <div><label>No records found</label></div>
     }

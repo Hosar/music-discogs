@@ -3,7 +3,7 @@ import { SearchInputForm } from '../../Components/SearchInputForm';
 import { SearchResults } from '../../Components/SearchResults';
 import { getRecordsByArtist } from '../../api/discogsMusic.api';
 import { fetchProvider } from '../../api/fetchProvider';
-import { ArtistRecord, Pagination } from '../../Components/SearchResults/SearchResults';
+import { ArtistRecord, Pagination } from '../../Common/interfaces';
 import { RequestError } from '../../Components/RequestError';
 
 const searchRecordsByArtist = getRecordsByArtist(fetchProvider);
