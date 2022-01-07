@@ -54,7 +54,6 @@ export function LandingPage() {
     }
 
     return (
-        // <div className='flex flex-col justify-center w-[80%]'>
         <div className='justify-center place-items-center h-screen min-h-screen items-center'>
             <SearchInputForm onSubmit={searchByArtist} />
             <SearchResults
@@ -65,15 +64,4 @@ export function LandingPage() {
             <RequestError errorMessage={requestError} />
         </div>       
     )
-}
-
-const styles: { [key: string]: React.CSSProperties } = {
-    container: {
-        display: 'flex',
-        minWidth: '20vw',
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-    }
 }
