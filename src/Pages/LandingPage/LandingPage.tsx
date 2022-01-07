@@ -45,8 +45,7 @@ export function LandingPage() {
             setArtistRecords((previousRecords: any) =>  {
                return [...previousRecords, ...recordsFound.results] 
             });
-            setIsLoading(false);
-            
+            setIsLoading(false);      
         } catch (error) {
             setRequestError('Error searching for artist');
             setArtistRecords([]);
@@ -55,7 +54,8 @@ export function LandingPage() {
     }
 
     return (
-        <div style={styles.container}>
+        // <div className='flex flex-col justify-center w-[80%]'>
+        <div className='justify-center place-items-center h-screen min-h-screen items-center'>
             <SearchInputForm onSubmit={searchByArtist} />
             <SearchResults
                 isLoading={isLoading}
