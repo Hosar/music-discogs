@@ -6,7 +6,7 @@ export function LoadingModal({ isLoading }: { isLoading: boolean }) {
     return (
         <>
             <div style={styles.modalStyle}>
-                Loading ...??
+                Loading ...
             </div>
         </>
     );
