@@ -17,12 +17,7 @@ export function SearchInputForm({ onSubmit }: Props) {
                 artistField: '',
             }}
             onSubmit={(values, actions) => {
-                console.log('Here??');
                 onSubmit(values);
-                // setTimeout(() => {
-                //     alert(JSON.stringify(values, null, 2));
-                //     actions.setSubmitting(false);
-                // }, 1000);
             }}
             validationSchema={SearchArtistSchema}
         >
