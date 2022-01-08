@@ -10,7 +10,7 @@ export function SearchInputField({ name, ...props }: Props) {
                     styles.searchInputError : styles.searchInputDefault;
 
             return (
-                <div className='mr-8 ml-8 w-full'>
+                <div>
                     <label htmlFor='artistInput'>Find Artist:</label>
                     <input id='artistInput' type='text' placeholder='Search artist'
                                className={fieldStyle} {...field} {...props} />

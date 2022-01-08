@@ -22,10 +22,12 @@ export function SearchInputForm({ onSubmit }: Props) {
             validationSchema={SearchArtistSchema}
         >
             {(props: FormikProps<Values>) => (
-                <Form className='w-[80%] mr-8 ml-8'>
-                    <SearchInputField name='artistField' />
-                    <button className='mr-8 ml-8 bg-amber-400 w-full rounded-full' 
-                        type="submit">Search</button>
+                <Form>
+                    <div className='ml-[150px] w-[80%]'>
+                        <SearchInputField name='artistField' />
+                        <button className='bg-amber-400 w-full rounded-full' 
+                            type="submit">Search</button>
+                    </div>
                 </Form>
             )}
         </Formik>

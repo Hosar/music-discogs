@@ -12,5 +12,5 @@ Project to show albums records for a given artist.
     yarn start
 <br/>
 - Pagination is set by infinity scroll
-- The project is based on create-react-app scripts. 
+- The project is based on create-react-app scripts.
 - This is no by any means a production ready project.

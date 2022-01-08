@@ -23,26 +23,29 @@ export const SearchResults = ({
     }, [paginationInfo.page, handleNextPage]);
 
     if (artistRecordsFound.length === 0 && !isLoading) {
-        return <div><label>No records found</label></div>
+        return <div className='w-[80%] mt-8 text-center'><label>No records found</label></div>
     }
     return (
-        <div className='w-[100%]'>
-        <div className='grid place-items-center items-center h-screen grid-cols-3 gap-2'>
+        <div className={classes.main}>
+        <div className={classes.grid}>
             <LoadingModal isLoading={isLoading} />
             {artistRecordsFound.map((artistInfo: any, index: number) => {
                 const id = artistInfo.id?.toString();
                 if (artistRecordsFound.length === index + 1) {
                     return (
-                        <div key={id} ref={lastRecord} data-testid="artist-records-found">
-                            <div>{artistInfo.title}</div>
+                        <div className={classes.artistRecord} 
+                            key={id} ref={lastRecord} 
+                            data-testid="artist-records-found">
                             <img src={artistInfo.thumb} alt={artistInfo.title} />
+                            <p className={classes.text}>{artistInfo.title}</p>
                         </div>);
                 }
 
                 return (
-                    <div key={id} data-testid="artist-records-found">
-                        <div>{artistInfo.title}</div>
+                    <div className={classes.artistRecord} 
+                        key={id} data-testid="artist-records-found">
                         <img src={artistInfo.thumb} alt={artistInfo.title} />
+                        <p className={classes.text}>{artistInfo.title}</p>
                     </div>
                 )
             })}
@@ -51,14 +54,9 @@ export const SearchResults = ({
     )
 }
 
-const styles: { [key: string]: React.CSSProperties } = {
-    container: {
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        margin: '2em'
-    },
-    artistInfo: {
-        margin: '2em'
-    }
+const classes = {
+    artistRecord: 'place-items-center items-center justify-items-center',
+    grid: 'grid place-items-center items-center h-screen grid-cols-3 gap-2',
+    text: 'max-w-[150px]',
+    main: 'w-[100%] mt-8',
 };
