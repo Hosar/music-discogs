@@ -4,7 +4,7 @@ import { SearchResultsProps } from '../../Common/interfaces'
 
 
 const ArtistInfo = forwardRef(
-    ({id, thumb, title}: {id: string, thumb: string, title:string}, ref: any) => (
+    ({id, thumb, title}: {id: React.Key, thumb: string, title:string}, ref: any) => (
     <div className={classes.artistRecord}
         key={id} ref={ref}
         data-testid="artist-records-found">
@@ -36,14 +36,15 @@ export const SearchResults = ({
         return <div className='w-[80%] mt-8 text-center'><label>No records found</label></div>
     }
     return (
-        <div className={classes.main}>
-            <div className={classes.grid}>
+        <div key={'45234'} className={classes.main}>
+            <div key={'123456'} className={classes.grid}>
                 <LoadingModal isLoading={isLoading} />
                 {artistRecordsFound.map((artistInfo: any, index: number) => {
                     const id = artistInfo.id?.toString();
                     if (artistRecordsFound.length === index + 1) {
                         return (
-                        <ArtistInfo 
+                        <ArtistInfo
+                            key={id}
                             id={id} 
                             thumb={artistInfo.thumb} 
                             title={artistInfo.title} ref={lastRecord} />
@@ -51,6 +52,7 @@ export const SearchResults = ({
                     }
                     return (
                         <ArtistInfo 
+                            key={id}
                             id={id} 
                             thumb={artistInfo.thumb} 
                             title={artistInfo.title} />

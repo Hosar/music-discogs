@@ -8,16 +8,6 @@ import { getArtistNoRecords,
 
 const defaultLoading = <h1>Loading....</h1>;
 
-
-// test('given a request should show Loading while resolving', async () => {
-//     const artistRecordsFound = getArtistNoRecords();
-//     render(<SearchResults paginationInfo={paginationInfo} 
-//                     artistRecordsFound={artistRecordsFound}
-//                     handleNextPage={handleNextPage} />);
-
-//     expect(screen.getByText(/Loading..../i)).toBeInTheDocument()
-// });
-
 beforeEach(() => {
     const mockIntersectionObserver = jest.fn();
     mockIntersectionObserver.mockReturnValue({
@@ -27,6 +17,17 @@ beforeEach(() => {
     });
     window.IntersectionObserver = mockIntersectionObserver;
 })
+
+test('given a request should show Loading while resolving', async () => {
+    const artistRecordsFound = getArtistNoRecords();
+    render(<SearchResults 
+                isLoading={true}
+                paginationInfo={paginationInfo} 
+                artistRecordsFound={artistRecordsFound}
+                handleNextPage={handleNextPage} />);
+
+    expect(screen.getByText(/Loading .../i)).toBeInTheDocument()
+});
 
 test('given no records found, should show expected message', async () => {
     const artistRecordsFound = getArtistNoRecords();

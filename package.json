@@ -27,7 +27,7 @@
     "build": "react-scripts build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "test": "set NODE_ENV=development && react-scripts test",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "sb": "set NODE_ENV=development && start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
