@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/music-discogs/static/css/main.2be3839a.css",
+    "main.js": "/music-discogs/static/js/main.a367d814.js",
+    "index.html": "/music-discogs/index.html",
+    "main.2be3839a.css.map": "/music-discogs/static/css/main.2be3839a.css.map",
+    "main.a367d814.js.map": "/music-discogs/static/js/main.a367d814.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2be3839a.css",
+    "static/js/main.a367d814.js"
+  ]
+}
