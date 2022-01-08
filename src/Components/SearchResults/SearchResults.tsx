@@ -1,6 +1,16 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, forwardRef } from 'react';
 import { LoadingModal } from '../LoadingModal';
 import { SearchResultsProps } from '../../Common/interfaces'
+
+
+const ArtistInfo = forwardRef(
+    ({id, thumb, title}: {id: string, thumb: string, title:string}, ref: any) => (
+    <div className={classes.artistRecord}
+        key={id} ref={ref}
+        data-testid="artist-records-found">
+        <img src={thumb} alt={title} />
+        <p className={classes.text}>{title}</p>
+    </div>));
 
 export const SearchResults = ({
     isLoading,
@@ -27,29 +37,26 @@ export const SearchResults = ({
     }
     return (
         <div className={classes.main}>
-        <div className={classes.grid}>
-            <LoadingModal isLoading={isLoading} />
-            {artistRecordsFound.map((artistInfo: any, index: number) => {
-                const id = artistInfo.id?.toString();
-                if (artistRecordsFound.length === index + 1) {
+            <div className={classes.grid}>
+                <LoadingModal isLoading={isLoading} />
+                {artistRecordsFound.map((artistInfo: any, index: number) => {
+                    const id = artistInfo.id?.toString();
+                    if (artistRecordsFound.length === index + 1) {
+                        return (
+                        <ArtistInfo 
+                            id={id} 
+                            thumb={artistInfo.thumb} 
+                            title={artistInfo.title} ref={lastRecord} />
+                        )    
+                    }
                     return (
-                        <div className={classes.artistRecord} 
-                            key={id} ref={lastRecord} 
-                            data-testid="artist-records-found">
-                            <img src={artistInfo.thumb} alt={artistInfo.title} />
-                            <p className={classes.text}>{artistInfo.title}</p>
-                        </div>);
-                }
-
-                return (
-                    <div className={classes.artistRecord} 
-                        key={id} data-testid="artist-records-found">
-                        <img src={artistInfo.thumb} alt={artistInfo.title} />
-                        <p className={classes.text}>{artistInfo.title}</p>
-                    </div>
-                )
-            })}
-        </div>
+                        <ArtistInfo 
+                            id={id} 
+                            thumb={artistInfo.thumb} 
+                            title={artistInfo.title} />
+                        ) 
+                })}
+            </div>
         </div>
     )
 }
