@@ -1,5 +1,5 @@
 import { Form, Formik, FormikProps } from 'formik';
-import { SearchInputField } from '../SearchInputField';
+import { SearchInputField } from './SearchInputField';
 import { SearchArtistSchema } from './validationSchema'
 
 interface Values {
@@ -25,7 +25,7 @@ export function SearchInputForm({ onSubmit }: Props) {
                 <Form>
                     <div className='ml-[150px] w-[80%]'>
                         <SearchInputField name='artistField' />
-                        <button className='bg-amber-400 w-full rounded-full' 
+                        <button className='mt-4 bg-amber-400 w-full rounded-full' 
                             type="submit">Search</button>
                     </div>
                 </Form>

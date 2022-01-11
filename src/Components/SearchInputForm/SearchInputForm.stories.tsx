@@ -1,18 +1,22 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { SearchInputForm } from './SearchInputForm';
+import { useFormikContext } from 'formik';
+
 
 export default {
   title: 'Components/SearchInputForm',
   component: SearchInputForm,
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
 } as ComponentMeta<typeof SearchInputForm>;
 
 const Template: ComponentStory<typeof SearchInputForm> = (args) => <SearchInputForm {...args} />;
 
 export const Normal = Template.bind({});
 Normal.args = {
+  onSubmit: (values: any) => console.log(values),
+};
+
+export const WithError = Template.bind({});
+WithError.args = {
   onSubmit: (values: any) => console.log(values),
 };

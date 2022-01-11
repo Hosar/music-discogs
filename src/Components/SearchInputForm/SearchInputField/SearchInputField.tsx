@@ -11,9 +11,13 @@ export function SearchInputField({ name, ...props }: Props) {
 
             return (
                 <div>
-                    <label htmlFor='artistInput'>Find Artist:</label>
-                    <input id='artistInput' type='text' placeholder='Search artist'
-                               className={fieldStyle} {...field} {...props} />
+                    <h1 className={styles.h1} aria-label={"Find an artist"}>
+                        Find Artist:
+                    </h1>
+                    <input className={fieldStyle}
+                           aria-label={"input artist name"}  aria-required="true"
+                           id='artistInput' type='text' placeholder='Search artist'
+                           {...field} {...props} />
                 </div>
             );
 }
@@ -39,5 +43,6 @@ const inputStandardStyle = `form-control
 const styles = {
     searchInputDefault: inputStandardStyle + ' focus:border-blue-600',
     searchInputError: inputStandardStyle + ' border-red-600',
+    h1: 'text-2xl font-bold text-yellow-400',
                         
 }
