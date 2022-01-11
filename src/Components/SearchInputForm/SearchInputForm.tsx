@@ -23,7 +23,7 @@ export function SearchInputForm({ onSubmit }: Props) {
         >
             {(props: FormikProps<Values>) => (
                 <Form>
-                    <div className='ml-[150px] w-[80%]'>
+                    <div className='mt-4 md:ml-[150px] md:w-[80%]'>
                         <SearchInputField name='artistField' />
                         <button className='mt-4 bg-amber-400 w-full rounded-full' 
                             type="submit">Search</button>
