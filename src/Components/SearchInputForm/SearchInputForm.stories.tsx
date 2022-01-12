@@ -15,8 +15,3 @@ export const Normal = Template.bind({});
 Normal.args = {
   onSubmit: (values: any) => console.log(values),
 };
-
-export const WithError = Template.bind({});
-WithError.args = {
-  onSubmit: (values: any) => console.log(values),
-};
