@@ -36,8 +36,8 @@ export const SearchResults = ({
         return <div className='w-[80%] mt-8 text-center'><label>No records found</label></div>
     }
     return (
-        <div key={'45234'} className={classes.main}>
-            <div key={'123456'} className={classes.grid}>
+        <div className={classes.main}>
+            <div className={classes.grid}>
                 <LoadingModal isLoading={isLoading} />
                 {artistRecordsFound.map((artistInfo: any, index: number) => {
                     const id = artistInfo.id?.toString();
@@ -65,7 +65,7 @@ export const SearchResults = ({
 
 const classes = {
     artistRecord: 'place-items-center items-center justify-items-center',
-    grid: 'grid place-items-center items-center h-screen grid-cols-3 gap-2',
+    grid: 'grid place-items-center items-center h-screen grid-cols-3 gap-2 height-[100%]',
     text: 'max-w-[150px]',
-    main: 'w-[100%] mt-8',
+    main: 'w-[100%] mt-8 height-[100%]',
 };
